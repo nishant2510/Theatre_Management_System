@@ -1,0 +1,73 @@
+Select * from Reservation where Reservation='Platinum';
+
+Select Transaction_ID from Reservation where Reserved=False;
+
+Alter table Reservation modify Employee_ID int(8) not null;
+
+Alter table Movie rename column Duration_Min to Duration_In_Hours ;
+
+Select Transaction_ID from Reservation where Transaction_ID like '%67%';
+
+Select Reserved from Reservation where Transaction_ID like '87___';
+
+Select distinct Employeee_Id from Reservation;
+
+Select Reservation_ID, Employee_ID ,Transaction_ID from Reservation where Reserved=True And Transaction_ID>=80000;
+
+Select Title from Movie Where Censor_Certificate='PG-13' or Duration_In_Hours<'02:00:00';
+
+Select* from Movie order by Title;
+
+Select Censor_Certificate from Movie where Movie_ID In(1,3,5);
+
+Select Row_No,Seat_No from Seat where Seat_ID between 213 And 231;
+
+Select Sum(Reserved) as Total_Reserved_Seats from Reservation;
+
+Select Employee_ID, Count(Employee_ID) from Reservation Group By Employee_ID; 
+
+Select Max(Screening_ID) as Smallest_Screening_ID,Min(Screening_ID) as Greatest_Screening_ID from Screening;
+
+Select upper(Username) from Employee;
+
+Select instr(Title,'A') from Movie;
+
+Select Transaction_ID , rpad(Reserved ,20,' Reservation Failed') as Reservation_Status from Reservation where Reserved=False;
+
+Select concat(Username,Password) as Login_Deatils from Employee;
+
+Select Title from Movie where Movie_ID in (Select Movie_ID from Reservation where Auditorium_ID=2);
+
+Select Username from Employee where Employee_ID in (Select Employee_ID from Reservation where Movie_ID=(Select Movie_ID from Movie where Title='Jurassic Park'));
+
+Select Name from Auditorium where Auditorium_ID in (Select Auditorium_ID from Screening where Screening_Start='2020-11-26,14:00:00');
+
+Select Customer_Name from Customer where Transaction_ID in(Select Transaction_ID from Reservation where Reservation in ('Silver','Gold')); 
+
+Select c.Customer_Name, c.Customer_Contact from reservation r join auditorium a on r.Auditorium_ID = a.Auditorium_ID 
+join customer c on r.Transaction_ID = c.Transaction_ID where a.Name = 'Auditorium_First';
+
+# Find movie title which stars Robin Williams and start after 4 pm.
+Select distinct m.Title from movie m join screening s on m.Movie_ID = s.Movie_ID 
+where m.Cast like '%Robin Williams%' and s.Screening_Start > '16:00:00';
+
+Select distinct e.Username from employee e join reservation r on e.Employee_ID = r.Employee_ID
+join movie m on r.Movie_ID = m.Movie_ID where m.Title = 'Star Wars - A New Hope';
+
+Select distinct s.Seat_ID from seat s join auditorium a on s.Auditorium_ID = a.Auditorium_ID
+where a.Name = 'Auditorium_Second';
+
+Create view reservation_seat as select distinct reservation.*, seat_reserved.Seat_ID
+from reservation join seat_reserved on reservation.Reservation_ID = seat_reserved.Reservation_ID;
+
+Select* from Reservation_Seat;
+
+Create index movie_title_index on movie(Title);
+
+Show indexes from Movie;
+
+
+
+
+
+

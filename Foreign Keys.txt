@@ -1,0 +1,40 @@
+Alter table Reservation 
+        add constraint reservation_employee_Employee_ID_fk 
+                foreign key (Employee_ID) references employee (Employee_ID);
+
+Alter table Reservation
+        add constraint reservation_movie_Movie_ID_fk
+                foreign key (Movie_ID) references movie (Movie_ID);
+
+Alter table Reservation
+        add constraint reservation_screening_Screening_ID_fk
+                foreign key (Screening_ID) references screening (Screening_ID);
+
+Alter table seat_reserved
+	add constraint seat_reserved_reservation_Reservation_ID_fk
+		foreign key (Reservation_ID) references reservation (Reservation_ID);
+
+Alter table seat_reserved
+	add constraint seat_reserved_seat_Seat_ID_fk
+		foreign key (Seat_ID) references seat (Seat_ID);
+
+Alter table seat
+	add constraint seat_auditorium_Auditorium_ID_fk
+		foreign key (Auditorium_ID) references auditorium (Auditorium_ID);
+
+Alter table screening
+	add constraint screening_auditorium_Auditorium_ID_fk
+		foreign key (Auditorium_ID) references auditorium (Auditorium_ID);
+
+Alter table screening
+	add constraint screening_movie_Movie_ID_fk
+		foreign key (Movie_ID) references movie (Movie_ID);
+
+Alter table Customer 
+        add constraint customer_reservation_Transaction_ID_fk
+                foreign key (Transaction_ID) references reservation (Transaction_ID);
+
+
+
+
+

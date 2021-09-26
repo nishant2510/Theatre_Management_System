@@ -1,0 +1,226 @@
+Drop database DBMS_Project;
+
+Create database DBMS_Project;
+
+Use DBMS_Project;
+
+Create table reservation
+(
+    Reservation_ID int auto_increment primary key,
+    Employee_ID    int                                                  not null,
+    Reservation    enum ('Silver', 'Gold', 'Platinum') default 'Silver' not null,
+    Reserved       tinyint(1)                          default 0        not null,
+    Transaction_ID int                                                  not null,
+    Movie_ID       int                                                  not null,
+    Auditorium_ID  int                                                  not null,
+    Screening_ID   int                                                  not null,
+    constraint reservation_employee_Transaction_index
+        unique (Transaction_ID)
+);
+
+Insert into Reservation values( 101, 2510, 'Silver', True, 54678, 1, 1, 139);
+Insert into Reservation values( 102, 2510, 'Silver', True, 76543, 1, 1, 139);
+Insert into Reservation values( 103, 2510, 'Silver',  False, 87765, 1, 1, 139);
+Insert into Reservation values( 104, 2510, 'Gold',  True, 49869, 1,  1, 139);
+Insert into Reservation values( 105, 2510, 'Gold',  True, 45698, 1,  1, 139);
+Insert into Reservation values( 106, 2510, 'Gold', False, 39849, 1,  1, 139);
+Insert into Reservation values( 107, 2510, 'Platinum',True, 45670, 1,  1, 139);
+Insert into Reservation values( 108, 2510, 'Platinum', True, 12987, 1, 1, 139);
+Insert into Reservation values( 109, 2510, 'Platinum', False, 72839, 1, 1, 139);
+Insert into Reservation values( 201, 1205, 'Silver', True, 83259, 5,  2, 239);
+Insert into Reservation values( 202, 1205, 'Silver', True, 76899, 5,  2, 239);
+Insert into Reservation values( 203, 1205, 'Silver', False, 56328, 5,  2, 239);
+Insert into Reservation values( 204, 1205, 'Gold', True,50982, 5,  2, 239);
+Insert into Reservation values( 205, 1205, 'Gold', True, 57458, 5,  2, 239);
+Insert into Reservation values( 206, 1205, 'Gold',  False, 52938, 5,  2, 239);
+Insert into Reservation values( 207, 1205, 'Platinum',  True, 24378, 5,  2, 239);
+Insert into Reservation values( 208, 1205, 'Platinum',  True,63478, 5,  2, 239);
+Insert into Reservation values( 209, 1205, 'Platinum', False, 56788, 5,  2, 239);
+Insert into Reservation values( 301, 2901, 'Silver', True, 34780, 8,  3, 339);
+Insert into Reservation values( 302, 2901, 'Silver',  True, 12378, 8,  3, 339);
+Insert into Reservation values( 303, 2901, 'Silver',  False, 20394, 8,  3, 339);
+Insert into Reservation values( 304, 2901, 'Gold', True, 12347,8,  3, 339);
+Insert into Reservation values( 305, 2901, 'Gold',  True, 34798,8,  3, 339);
+Insert into Reservation values( 306, 2901, 'Gold',  False, 23489,8,  3, 339);
+Insert into Reservation values( 307, 2901, 'Platinum',  True, 39847, 8,  3, 339);
+Insert into Reservation values( 308, 2901, 'Platinum',  True, 23748, 8,  3, 339);
+Insert into Reservation values( 309, 2901, 'Platinum', False, 39800, 8, 3, 339);
+
+
+create table customer
+(
+    Customer_ID      int          not null
+        primary key,
+    Customer_Name    varchar(255) not null,
+    Customer_Contact bigint       not null,
+    Transaction_ID   int          not null,
+    Customer_DOB     date         not null,
+    Customer_Email   varchar(50)  not null,
+    constraint Customer_Transaction_ID_uindex
+        unique (Transaction_ID)
+);
+
+Insert into Customer values(1, 'Jiya', 9559834463, 54678, '2003-12-02', 'jiya0212@gmail.com');
+Insert into Customer values(2, 'Sahaj', 6519160263, 76543, '2000-02-12', 'lovesahaj1225@protonmail.com');
+Insert into Customer values(3, 'Anusha', 8413049646, 87765, '2000-01-23', 'anusha2301@gmail.com');
+Insert into Customer values(4, 'Bhavleen', 7358958044, 49869, '1988-10-20', 'bhavleen2010@gmail.com');
+Insert into Customer values(5, 'Naveen', 8506972994, 45698, '1965-03-12', 'naveen1203@gmail.com');
+Insert into Customer values(6, 'Aryan', 9922528204, 39849, '1976-11-09', 'aryan0911@gmail.com');
+Insert into Customer values(7, 'Surbhi', 8131189118, 45670, '2012-08-30', 'surbhi3008@gmai.com');
+Insert into Customer values(8, 'Manya', 8844549128, 12987, '1991-01-18', 'manya1809@gmail.com');
+Insert into Customer values(9, 'Ram', 6286916457, 72839, '1960-02-28', 'ram2801@gmail.com');
+Insert into Customer values(10, 'Shaurya', 6031079825, 83259, '2009-09-05', 'shaurya342@gmail.com');
+Insert into Customer values(11, 'Jahnavi', 6719576060, 76899, '1990-12-05', 'jahnavi0512@gmail.com');
+Insert into Customer values(12, 'Nishant', 8869945831, 56328, '1985-10-25', 'nishant2510@gmail.com');
+Insert into Customer values(13, 'Aanchal', 7526550218, 50982, '1979-01-23', 'aanchal12301@gmail.com');
+Insert into Customer values(14, 'Richa', 6560319723, 57458, '1974-09-03', 'richa03019@gmail.com');
+Insert into Customer values(15, 'Jatin', 6719576060, 52938, '1982-06-24', 'jatin2401@gmail.com');
+Insert into Customer values(16, 'Vivek', 8979693405, 24378, '1970-09-21', 'vivek2120@gmail.com');
+Insert into Customer values(17, 'Divya', 6191852274, 63478, '1989-10-05', 'divya0401@gmail.com');
+Insert into Customer values(18, 'Sonal', 8837264694, 56788, '1976-07-17', 'sonal19198@gmail.com');
+Insert into Customer values(19, 'Rajiv', 7973786242, 34780, '1983-05-15', 'rajiv1234@gmail.com');
+Insert into Customer values(20, 'Sumit', 7088602806, 12378, '1988-11-25', 'sumit2551@gmail.com');
+Insert into Customer values(21, 'Geeta', 9571395450, 20394, '2000-07-24', 'geeta2113@gmail.com');
+Insert into Customer values(22, 'Shivani', 7772786691, 12347, '1997-09-25', 'shiv345@gmail.com');
+Insert into Customer values(23, 'Sameer', 8606019115, 34798, '1996-07-01', 'sam24@gmail.com');
+Insert into Customer values(24, 'Reena', 9089630929, 23489, '1990-05-04', 'reenam33@gmail.com');
+Insert into Customer values(25, 'Bijoy', 6235425961, 39847, '1997-04-21', 'bijoyy55@gmail.com');
+Insert into Customer values(26, 'Ryan', 7811169969, 23748, '1990-09-25', 'ryangold@gmail.com');
+Insert into Customer values(27, 'Dev', 6211269113, 39800, '1999-06-17', 'dev345@gmail.com');
+
+
+Create table Movie
+(
+	Movie_ID int not null,
+	Title varchar(32) not null,
+	Director varchar(32) not null,
+	Cast varchar(255) not null,
+	Censor_Certificate varchar(32) not null,
+	Duration_Min time not null,
+	constraint PK_Movie
+		primary key (Movie_ID)
+);
+
+Insert into Movie values (1, 'Jurassic Park', 'Steven Spielberg', 'Jeff Goldblum, Sam Neill, Laura Dern, Samuel L. Jackson, Richard Attenborough', 'PG-13', '02:08:00');
+Insert into Movie values (2, 'The Shining', 'Stanley Kubric', 'Jack Nicholson, Shelly Duvall, Danny Lloyd, Scatman Crothers, Joe Trukel', 'R', '02:26:00');
+Insert into Movie values (3, 'Good Will Hunting', 'Gus Van Sant', 'Matt Damon, Ben Affleck, Robin Williams, Casey Affleck, Minnie Driver','R', '02:08:00');
+Insert into Movie values (4, 'Knives Out', 'Rian Johnson', 'Ana de Armas, Chris Evans, Daniel Craig, Joseph Gordan-Levitt, Katherine Langford', 'PG-13', '02:10:00');
+Insert into Movie values (5, 'Dead Poet Society', 'Peter Weir', 'Robin Williams, Ethan Hawke, Robert Sean Leonard, Josh Charles, Gale Hansen','PG', '02:08:00');
+Insert into Movie values (6, 'The Godfather', 'Francis Ford Coppola', 'Al Pacino, Marlon Brando, James Caan, Diane Keaton, Talia Shire, John Cazale', 'R', '02:55:00');
+Insert into Movie values (7, 'The Lord of Rings', 'Peter Jackson', 'Elijah Wood, Iam McKellen, Orlando Bloom, Viggo Mortensen, Sean Astin, Sean Bean', 'PG-13', '02:58:00');
+Insert into Movie values (8, 'Star Wars - A New Hope', 'George Lucas', 'Carrie Fisher, James Earl Jones, Alec Guinness, Harrison Ford, Mark Hamil ','PG', '02:01:00');
+Insert into Movie values (9, '500 Days of Summer', 'Marc Webb', 'Joseph Gordan-Leviit, Zooey Deschanel, Matthew Fray Gubler, Chole Grace Moretz, Clark Gregg', 'PG-13', '01:45:00');
+Insert into Movie values (10, 'The Dark Knight', 'Christopher Nolan', 'Christian Bale, Gary Oldman, Heath Ledger, Micheal Cane, Morgan Freeman, Cillian Murphy', 'PG-13', '02:32:00');
+
+
+Create table Auditorium
+(
+	Auditorium_ID int not null,
+	Name varchar(32) not null,
+	SeatingCapacity int not null,
+	constraint PK_Auditorium
+		primary key (Auditorium_ID)
+);
+
+Insert into Auditorium  values(1, 'Auditorium_First', 9); 
+Insert into Auditorium  values(2, 'Auditorium_Second', 9);
+Insert into Auditorium  values(3, 'Auditorium_Third', 9);
+
+
+Create table Screening
+(
+	Screening_ID int not null,
+	Movie_ID int not null,
+	Auditorium_ID int not null,
+        Screening_Start timestamp,
+	constraint PK_Screening
+		primary key (Screening_ID)
+);
+
+Insert into Screening values (139, 1, 1, TIMESTAMP("2020-11-26",  "13:30:00"));
+Insert into Screening values (239, 5, 2, TIMESTAMP("2020-11-26",  "14:00:00"));
+Insert into Screening values (339, 8, 3, TIMESTAMP("2020-11-26",  "12:30:00"));
+
+
+Create table Employee
+(
+	Employee_ID int not null,
+	Username varchar(32) not null,
+	Password varchar(32) not null,
+	constraint PK_Employee
+		primary key (Employee_ID)
+);
+
+Insert into Employee values( 2510, 'Suresh_Gupta', 'Suresh@2510'); 
+Insert into Employee values( 1205, 'Rajeev_Sharma', 'Rajeev@1205'); 
+Insert into Employee values( 2901, 'Anil_Roy', 'Anil@2901'); 
+
+
+Create table Seat
+(
+    Seat_ID       int not null,
+    Row_No        int not null,
+    Seat_No       int not null,
+    Auditorium_ID int not null,
+    constraint PK_Seat
+        unique (Seat_ID)
+);
+
+Insert into Seat  values (111, 1, 1, 1);
+Insert into Seat  values (112, 1, 2, 1);
+Insert into Seat  values (113, 1, 3, 1);
+Insert into Seat  values (121, 2, 1, 1);
+Insert into Seat  values (122, 2, 2, 1);
+Insert into Seat  values (123, 2, 3, 1);
+Insert into Seat  values (131, 3, 1, 1);
+Insert into Seat  values (132, 3, 2, 1);
+Insert into Seat  values (133, 3, 3, 1);
+Insert into Seat  values (211, 1, 1, 2);
+Insert into Seat  values (212, 1, 2, 2);
+Insert into Seat  values (213, 1, 3, 2);
+Insert into Seat  values (221, 2, 1, 2);
+Insert into Seat  values (222, 2, 2, 2);
+Insert into Seat  values (223, 2, 3, 2);
+Insert into Seat  values (231, 3, 1, 2);
+Insert into Seat  values (232, 3, 2, 2);
+Insert into Seat  values (233, 3, 3, 2);
+Insert into Seat  values (311, 1, 1, 2);
+Insert into Seat  values (312, 1, 2, 2);
+Insert into Seat  values (313, 1, 3, 2);
+Insert into Seat  values (321, 2, 1, 2);
+Insert into Seat  values (322, 2, 2, 2);
+Insert into Seat  values (323, 2, 3, 2);
+Insert into Seat  values (331, 3, 1, 2);
+Insert into Seat  values (332, 3, 2, 2);
+Insert into Seat  values (333, 3, 3, 2);
+
+
+Create table Seat_Reserved
+(
+    Seat_ID        int not null,
+    Reservation_ID int not null
+);
+
+Insert into Seat_Reserved values (111, 101);
+Insert into Seat_Reserved values (112, 102);
+Insert into Seat_Reserved values (121, 104);
+Insert into Seat_Reserved values (122, 105);
+Insert into Seat_Reserved values (131, 107);
+Insert into Seat_Reserved values (132, 108);
+Insert into Seat_Reserved values (211, 201);
+Insert into Seat_Reserved values (212, 202);
+Insert into Seat_Reserved values (221, 204);
+Insert into Seat_Reserved values (222, 205);
+Insert into Seat_Reserved values (231, 207);
+Insert into Seat_Reserved values (232, 208);
+Insert into Seat_Reserved values (311, 301);
+Insert into Seat_Reserved values (312, 302);
+Insert into Seat_Reserved values (321, 304);
+Insert into Seat_Reserved values (322, 305);
+Insert into Seat_Reserved values (331, 307);
+Insert into Seat_Reserved values (332, 308);
+
+
+
+
+
